@@ -1,1 +1,4 @@
-# tips_and_tricks
+# Tips and tricks
+
+- [Linux](Linux)
+  - [Debian](Linux/Debian/)
