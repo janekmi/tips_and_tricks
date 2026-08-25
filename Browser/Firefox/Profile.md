@@ -1,0 +1,3 @@
+# Profile
+
+- https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles?redirectslug=Managing+profiles&redirectlocale=en-US
