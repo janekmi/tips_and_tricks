@@ -15,7 +15,7 @@ There is a limit on the length of the command but I do not know how long it can 
 
 ---
 
-### Test Webpush
+#### Test Webpush
 
 **Endpoint**: &lt;ENDPOINT&gt;
 
@@ -43,4 +43,39 @@ web-push send-notification --endpoint=$ENDPOINT --auth=$AUTH --key=$KEY --payloa
 
 ```sh
 MID=%MID% EID=%EID% ./push.sh # use absolute path
+```
+
+### Ntfy
+
+1. Install ntfy on your mobile.
+2. Set the default server to point to the ZoneMinder system: Settings / Default server e.g. http://192.168.0.1:85
+3. Install and configure [ntfy](ntfy.sh.md) on the ZoneMinder system.
+4. Write the script calling ntfy e.g.
+
+```sh
+ENDPOINT=<ENDPOINT>
+PAYLOAD="ZoneMinder: 📸 monitor/event ($MID/$EID)"
+EVENT_DIR="/some/path/zoneminder/events/$MID/$(date +'%Y-%m-%d')/$EID"
+SNAPSHOT="$EVENT_DIR/snapshot.jpg"
+
+case "$1" in
+start)
+    curl -d "$PAYLOAD" $ENDPOINT
+    ;;
+end)
+    curl -T "$SNAPSHOT" -H "Filename: monitor_${MID}_event_${EID}.jpg" $ENDPOINT
+    ;;
+esac
+```
+
+5. ZoneMinder: Edit Monitor / Recording / Event Start Command
+
+```sh
+MID=%MID% EID=%EID% ./push.sh start # use absolute path
+```
+
+6. ZoneMinder: Edit Monitor / Recording / Event End Command
+
+```sh
+MID=%MID% EID=%EID% ./push.sh end # use absolute path
 ```
