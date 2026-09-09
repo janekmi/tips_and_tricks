@@ -2,6 +2,34 @@
 
 https://wiki.zoneminder.com/Debian_13_Trixie_with_Zoneminder_1.36.35_or_Zoneminder_1.37.x#Debian_13_with_Zoneminder_1.37.x_from_zmrepo
 
+## Binding
+
+ZoneMinder relayes on Apache to provide its web interface. To limit on which interfaces ZoneMinder is available you have to adjust the Apache's configuration `/etc/apache2/ports.conf` e.g.
+
+```
+Listen 192.168.50.10:80
+```
+
+And the ZoneMinder's virtual host `/etc/apache2/sites-available/zoneminder.conf` e.g.
+
+```xml
+<VirtualHost 192.168.50.10:80>
+    ServerName zoneminder.example.local
+    DocumentRoot /usr/share/zoneminder/www
+    <Directory /usr/share/zoneminder/www>
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Restart Apache to apply changes.
+
+```sh
+systemctl restart apache2
+```
+
+> **Note**: When Apache is bound to a virtual interface, e.g. Tailscale, its service can fail to start. Make sure the interface is available when Apache starts. Re-start the Apache service as necessary.
+
 ## Notifications
 
 There is [zmesNg](https://zmeventnotificationng.readthedocs.io/en/latest/guides/install_path1.html#step-1-run-the-installer) which can be used with ZoneMinder to generate push notifications to zmNinjaNg on Android. I tried it make to work but the documentation was not clear how make it work. So, I decided to use ZoneMinder's `EventStartCommand` / `EventEndCommand` with UnifiedPush systems which just worked.
