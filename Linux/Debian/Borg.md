@@ -1,7 +1,14 @@
 # Borg
 
-> **Note**: There is no need to use `uv` to install Borgmatic. You can install a debian package.
+> **Note**: I do not use Borg directly to manage backups. Please see [borgmatic.md](borgmatic.md).
 
-- Ref: https://packages.debian.org/stable/borgbackup
-- Ref: https://tracker.debian.org/pkg/borgmatic
-- Ref: https://torsion.org/borgmatic/how-to/install-borgmatic/
+## Key export
+
+> **Note**: There is a recommendation to export a key and store it in a safe place.
+
+```sh
+# local repository
+borg key export /path/to/repository local.key
+# remote repository
+borg key export ssh://XXX@YYY.repo.borgbase.com/./repo remote.key
+```

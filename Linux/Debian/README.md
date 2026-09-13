@@ -1,6 +1,7 @@
 # Debian
 
 - [Borg](Borg.md)
+- [borgmatic](borgmatic.md)
 - [Debian](Debian.md)
 - [GeoPulse](GeoPulse.md)
 - [LUKS](LUKS.md)
