@@ -28,7 +28,7 @@ Restart Apache to apply changes.
 systemctl restart apache2
 ```
 
-> **Note**: When Apache is bound to a virtual interface, e.g. Tailscale, its service can fail to start. Make sure the interface is available when Apache starts. Re-start the Apache service as necessary.
+> **Note**: When Apache is bound to a virtual interface, e.g. Tailscale, its service can fail to start. Make sure the interface is available when Apache starts. Read more [here](Tailscale.md).
 
 ## Notifications
 
