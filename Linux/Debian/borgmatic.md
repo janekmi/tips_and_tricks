@@ -31,6 +31,13 @@ source_directories:
     - /very/important/data/
 ```
 
+You can further fine-tune what you do and don’t back up by setting `patterns`.
+
+```yaml
+patterns:
+    - '- /very/important/data/*.log'
+```
+
 - Set path to both local repository and remote repository.
 
 ```yaml
@@ -55,8 +62,18 @@ borgmatic repo-create --encryption repokey
 
 6. Export and backup [keys](Borg.md#key-export)
 
+> **Note**: Each of the repositories has its own key. You have to export and backup all of them.
+
 ## Backup your data
+
+> **Note**: You may want to check what is backed up before creating a backup.
 
 ```sh
 borgmatic create --verbosity 1 --list --stats --config /my/config.yaml
+```
+
+## Check what is backed up
+
+```sh
+borgmatic create --config /my/config.yaml --dry-run --list
 ```
