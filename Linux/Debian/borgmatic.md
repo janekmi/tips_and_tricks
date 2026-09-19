@@ -41,7 +41,7 @@ repositories:
      label: remote
 ```
 
-- Set password for both repositories.
+- Set password for both repositories (yes, the same password for both of them).
 
 ```yaml
 encryption_passphrase: strong_password
@@ -52,6 +52,8 @@ encryption_passphrase: strong_password
 ```sh
 borgmatic repo-create --encryption repokey
 ```
+
+6. Export and backup [keys](Borg.md#key-export)
 
 ## Backup your data
 
