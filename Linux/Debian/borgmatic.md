@@ -1,5 +1,7 @@
 # borgmatic
 
+## Simple setup
+
 A simple setup comprised of:
 
 - one local borg repository and
@@ -17,7 +19,7 @@ A simple setup comprised of:
 3. Generate a `borgmatic` configuration file.
 
 ```sh
-borgmatic config generate --destination /my/configs.yaml
+borgmatic config generate --destination /my/config.yaml
 ```
 
 4. Adjust the configuration file to your needs.
@@ -51,8 +53,8 @@ encryption_passphrase: strong_password
 borgmatic repo-create --encryption repokey
 ```
 
-6. Backup your data.
+## Backup your data
 
 ```sh
-borgmatic create --verbosity 1 --list --stats
+borgmatic create --verbosity 1 --list --stats --config /my/config.yaml
 ```
