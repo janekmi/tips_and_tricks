@@ -1,5 +1,9 @@
 # GnuCash
 
+## Columns in “List of Downloaded Transactions”
+
+Ref: https://gnucash.org/docs/v5/C/gnucash-manual/trans-import.html#trans-match-col
+
 ## CSV import settings
 
 These settings live in `~/.local/share/gnucash/books/your_book.gnucash.gcm`.
