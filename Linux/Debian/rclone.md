@@ -8,8 +8,8 @@
 curl https://rclone.org/install.sh | sudo bash
 ```
 
-Ref: https://packages.debian.org/trixie/rclone
-Ref: https://rclone.org/downloads/#script-download-and-install
+- https://packages.debian.org/trixie/rclone
+- https://rclone.org/downloads/#script-download-and-install
 
 ## Mount locally
 
@@ -17,14 +17,14 @@ Ref: https://rclone.org/downloads/#script-download-and-install
 rclone mount remote:path/to/files /path/to/local/mount
 ```
 
-Ref: https://rclone.org/commands/rclone_mount/
+https://rclone.org/commands/rclone_mount/
 
 ## Google Drive
 
 1. Create your own client_id
 
-Ref: https://rclone.org/drive/#making-your-own-client-id
+https://rclone.org/drive/#making-your-own-client-id
 
 2. Configure
 
-Ref: https://rclone.org/drive/#configuration
+https://rclone.org/drive/#configuration
