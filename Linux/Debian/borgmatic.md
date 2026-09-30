@@ -1,28 +1,51 @@
 # borgmatic
 
-## Simple setup
+## Install `borg` and `borgmatic`
+
+> **Note**: Both `borg` and `borgmatic` can be already installed in your distro. But in my case it was `borg` 1.4.0 which does not support e.g. `rclone` so you may prefer to install a package called `borgbackup2` but in this case you cannot rely on the `borgmatic` package provided by the repository since it requires the `borgbackup` package which cannot be installed along with the `borgbackup2` package.
+
+1. Install the latest available `borg` 2.x.
+
+```sh
+apt install borgbackup2
+```
+
+2. Install `uv`. Skip if already installed.
+
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+3. Install `borgmatic`.
+
+```sh
+uv tool update-shell
+uv tool install borgmatic
+```
+
+- https://torsion.org/borgmatic/how-to/install-borgmatic/
+- https://docs.astral.sh/uv/getting-started/installation/
+- https://packages.debian.org/stable/borgbackup
+- https://packages.debian.org/stable/borgbackup2
+- https://tracker.debian.org/pkg/borgmatic
+
+## Setups
+
+### Simple one
 
 A simple setup comprised of:
 
 - one local borg repository and
 - one remote borg repository on BorgBase.
 
-1. Install `borg` and `borgmatic`.
-
-> **Note**: Both `borg` and `borgmatic` come already installed in my distro. Make sure they already installed in yours as well.
-
-- https://torsion.org/borgmatic/how-to/install-borgmatic/
-- https://packages.debian.org/stable/borgbackup
-- https://tracker.debian.org/pkg/borgmatic
-
-2. [Create a BorgBase repository](/Services/BorgBase.md).
-3. Generate a `borgmatic` configuration file.
+1. [Create a BorgBase repository](/Services/BorgBase.md).
+2. Generate a `borgmatic` configuration file.
 
 ```sh
 borgmatic config generate --destination /my/config.yaml
 ```
 
-4. Adjust the configuration file to your needs.
+3. Adjust the configuration file to your needs.
 
 - Set what you want to backup.
 
@@ -54,15 +77,37 @@ repositories:
 encryption_passphrase: strong_password
 ```
 
-5. Create repositories.
+4. Create repositories.
 
 ```sh
-borgmatic repo-create --encryption repokey
+borgmatic repo-create --encryption repokey --config /my/config.yaml
 ```
 
-6. Export and backup [keys](Borg.md#key-export)
+5. Export and backup [keys](Borg.md#key-export)
 
 > **Note**: Each of the repositories has its own key. You have to export and backup all of them.
+
+### With rclone
+
+1. Setup an [rclone remote](rclone.md#setting-up-remotes).
+2. Generate a `borgmatic` configuration file. (as above)
+3. Adjust the configuration file to your needs.
+
+- Set what you want to backup.
+- Set rclone repository.
+
+```yaml
+repositories:
+    - path: rclone:remote:/some/path
+      label: proton
+      encryption: repokey-blake2-aes-ocb
+```
+
+> **Note**: Adjust encryption as you see fit but from my experiements `borgmatic` provides just `repokey` which is no longer a supported value for `borg` 2.0 when the `encryption` is not set explicitly.
+
+- Set password for the repository.
+
+Ref: https://torsion.org/borgmatic/reference/configuration/repositories/#rclone
 
 ## Backup your data
 
