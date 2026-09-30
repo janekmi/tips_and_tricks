@@ -80,14 +80,18 @@ encryption_passphrase: strong_password
 4. Create repositories.
 
 ```sh
-borgmatic repo-create --encryption repokey --config /my/config.yaml
+borgmatic repo-create --encryption repokey-blake2-aes-ocb --config /my/config.yaml
 ```
+
+> **Note**: Adjust the encryption according to your prefence and what can be acceleratedy by your hardware.
 
 5. Export and backup [keys](Borg.md#key-export)
 
 > **Note**: Each of the repositories has its own key. You have to export and backup all of them.
 
 ### With rclone
+
+> **Note**: This setup is not specially performant. Some caching options may fix this but till then you may want to avoid it and just use the [`rclone copy`](rclone.md#rclone-copy) command.
 
 1. Setup an [rclone remote](rclone.md#setting-up-remotes).
 2. Generate a `borgmatic` configuration file. (as above)
@@ -100,10 +104,7 @@ borgmatic repo-create --encryption repokey --config /my/config.yaml
 repositories:
     - path: rclone:remote:/some/path
       label: proton
-      encryption: repokey-blake2-aes-ocb
 ```
-
-> **Note**: Adjust encryption as you see fit but from my experiements `borgmatic` provides just `repokey` which is no longer a supported value for `borg` 2.0 when the `encryption` is not set explicitly.
 
 - Set password for the repository.
 
