@@ -11,15 +11,7 @@ curl https://rclone.org/install.sh | sudo bash
 - https://packages.debian.org/trixie/rclone
 - https://rclone.org/downloads/#script-download-and-install
 
-## Mount locally
-
-```sh
-rclone mount remote:path/to/files /path/to/local/mount
-```
-
-https://rclone.org/commands/rclone_mount/
-
-## Setting up remotes
+## Set up remotes
 
 ### Google Drive
 
@@ -36,3 +28,19 @@ https://rclone.org/drive/#configuration
 > **Note**: There is no point in setting 2FA during setup. Use `--protondrive-2fa` when listing or mounting the remote. More on this option [here](https://rclone.org/protondrive/#protondrive-2fa).
 
 - https://rclone.org/protondrive/
+
+## `rclone copy`
+
+```sh
+rclone copy /local/path remote:/remote/path
+```
+
+https://rclone.org/commands/rclone_copy/
+
+## Mount locally
+
+```sh
+rclone mount remote:path/to/files /path/to/local/mount
+```
+
+https://rclone.org/commands/rclone_mount/
