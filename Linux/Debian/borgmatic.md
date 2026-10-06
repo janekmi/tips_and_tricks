@@ -4,24 +4,7 @@
 
 > **Note**: Both `borg` and `borgmatic` can be already installed in your distro. But in my case it was `borg` 1.4.0 which does not support e.g. `rclone` so you may prefer to install a package called `borgbackup2` but in this case you cannot rely on the `borgmatic` package provided by the repository since it requires the `borgbackup` package which cannot be installed along with the `borgbackup2` package.
 
-1. Install the latest available `borg` 2.x.
-
-```sh
-apt install borgbackup2
-```
-
-2. Install `uv`. Skip if already installed.
-
-```sh
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-3. Install `borgmatic`.
-
-```sh
-uv tool update-shell
-uv tool install borgmatic
-```
+> **Note**: At the time of writing, `borg` 2.x is not yet stable, so I recommend using `borg` 1.x.
 
 - https://torsion.org/borgmatic/how-to/install-borgmatic/
 - https://docs.astral.sh/uv/getting-started/installation/
@@ -80,7 +63,7 @@ encryption_passphrase: strong_password
 4. Create repositories.
 
 ```sh
-borgmatic repo-create --encryption repokey-blake2-aes-ocb --config /my/config.yaml
+borgmatic repo-create --config /my/config.yaml
 ```
 
 > **Note**: Adjust the encryption according to your prefence and what can be acceleratedy by your hardware.
@@ -89,7 +72,7 @@ borgmatic repo-create --encryption repokey-blake2-aes-ocb --config /my/config.ya
 
 > **Note**: Each of the repositories has its own key. You have to export and backup all of them.
 
-### With rclone
+### With rclone (`borg` 2.x)
 
 > **Note**: This setup is not specially performant. Some caching options may fix this but till then you may want to avoid it and just use the [`rclone copy`](rclone.md#rclone-copy) command.
 
