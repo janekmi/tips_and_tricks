@@ -4,8 +4,11 @@
 
 > **Note**: Both `borg` and `borgmatic` can be already installed in your distro. But in my case it was `borg` 1.4.0 which does not support e.g. `rclone` so you may prefer to install a package called `borgbackup2` but in this case you cannot rely on the `borgmatic` package provided by the repository since it requires the `borgbackup` package which cannot be installed along with the `borgbackup2` package.
 
-> **Note**: At the time of writing, `borg` 2.x is not yet stable, so I recommend using `borg` 1.x.
+> **Note**: At the time of writing, `borg` 2.x is not yet stable and not recommended to use in production, so I recommend using `borg` 1.x.
 
+> **Note**: Repositories created with `borg` 1.x are NOT compatible with `borg` 2.x. I expect a migration procedure to be available when `borg` 2.x is released.
+
+- https://www.borgbackup.org/releases/
 - https://torsion.org/borgmatic/how-to/install-borgmatic/
 - https://docs.astral.sh/uv/getting-started/installation/
 - https://packages.debian.org/stable/borgbackup
