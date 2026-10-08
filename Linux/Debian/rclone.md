@@ -29,6 +29,10 @@ https://rclone.org/drive/#configuration
 
 - https://rclone.org/protondrive/
 
+### WebDAV
+
+- https://rclone.org/webdav/
+
 ## `rclone copy`
 
 ```sh

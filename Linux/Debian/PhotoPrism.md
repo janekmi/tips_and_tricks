@@ -58,8 +58,37 @@ Ref: https://docs.photoprism.app/getting-started/docker-compose/
 
 ## Automatic import
 
-WebDAV + automatic import set
+To import photos automatically you have to upload them to PhotoPrism via WebDAV.
+
+1. Enable WebDAV access for a chosen user (preferably without admin preferences).
 
 ```sh
-rclone move --metadata /mnt/encrypted/Syncthing/FP4_Janek/DCIM/IMG_20260801_184546.jpg photoprism-import:/
+docker compose exec photoprism photoprism users mod --webdav username
+```
+
+2. Add an `Apps and Devices` access (WebUI).
+
+> **Note**: This step is ptional but allows not to share the user's main password.
+
+- Manage Account > Account > Security and Access / APPS AND DEVICES
+- Click `Add` and set:
+  - `Name` to an arbitrary. This value does not take part in the further process.
+  - `Scop` to `WebDAV`.
+  - `Expires` as you see fit.
+
+3. Construct a WebDAV import ULR
+
+A PhotoPrism WebDAV URL is simply `http(s)://domain:port/import` e.g.
+
+`http://127.0.0.1:2342/import/`
+
+4. Create an [`rclone` WebDAV remote](rclone.md#webdav).
+5. Import photos.
+
+> **Note**: `move` makes sure you don't have to take care of already imported photos yourself. They are just in PhotoPrism. But if you want to have original files kept where they are you may want to use `copy` instead.
+
+> **Note**: `--metadata` makes sure `rclone` copies your pohotos along with their metadata e.g. a creation date so they got imported correctly.
+
+```sh
+rclone move --metadata /local/DCIM/*.jpg photoprism-import:/
 ```
