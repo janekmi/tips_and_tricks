@@ -89,6 +89,8 @@ A PhotoPrism WebDAV URL is simply `http(s)://domain:port/import` e.g.
 
 > **Note**: `--metadata` makes sure `rclone` copies your pohotos along with their metadata e.g. a creation date so they got imported correctly.
 
+> **Note**: `rclone` `mount` command does not allow to preserve metadata.
+
 ```sh
 rclone move --metadata /local/DCIM/*.jpg photoprism-import:/
 ```
