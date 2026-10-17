@@ -18,3 +18,10 @@ After=network.target remote-fs.target nss-lookup.target tailscale-wait-online.se
 ```
 
 Ref: https://github.com/Lightfielder/Tailscale/blob/main/cmd/tailscaled/tailscale-wait-online.service
+
+## TLS certificates
+
+1. Enable MagicDNS.
+2. Enable HTTPS.
+
+Ref: https://tailscale.com/docs/how-to/set-up-https-certificates

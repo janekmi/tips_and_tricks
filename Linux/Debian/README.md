@@ -2,6 +2,7 @@
 
 - [Borg](Borg.md)
 - [borgmatic](borgmatic.md)
+- [Caddy](Caddy.md)
 - [Debian](Debian.md)
 - [GeoPulse](GeoPulse.md)
 - [HomeBox](HomeBox.md)
