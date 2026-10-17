@@ -4,6 +4,7 @@
 - [borgmatic](borgmatic.md)
 - [Debian](Debian.md)
 - [GeoPulse](GeoPulse.md)
+- [HomeBox](HomeBox.md)
 - [LUKS](LUKS.md)
 - [ntfy.sh](ntfy.sh.md)
 - [PDF](PDF.md)
